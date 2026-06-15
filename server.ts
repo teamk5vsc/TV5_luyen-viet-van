@@ -1820,8 +1820,9 @@ interface TelemetryRecord {
   lastActive: string;
 }
 
-const KV_REST_API_URL = process.env.KV_REST_API_URL;
-const KV_REST_API_TOKEN = process.env.KV_REST_API_TOKEN;
+const KV_REST_API_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const KV_REST_API_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
 
 async function getTelemetryStats(): Promise<Record<string, TelemetryRecord>> {
   if (KV_REST_API_URL && KV_REST_API_TOKEN) {
